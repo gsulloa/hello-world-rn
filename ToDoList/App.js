@@ -21,7 +21,10 @@ const List = styled.View`
 const ListItem = styled.Text`
   color: ${props => props.selected ? "red" : "black"};
 `
-
+const Title = styled.Text`
+  font-size: 36px;
+  text-align: center;
+`
 const Input = styled.TextInput`
   border: 1px solid gray;
 `
@@ -56,6 +59,7 @@ export default class App extends React.Component {
     return (
       <Body>
         <Wrapper>
+          <Title>ToDo List!!</Title>
           <Input
             value={this.state.input}
             onChangeText={this.handleWrite}
