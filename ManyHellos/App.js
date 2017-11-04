@@ -1,14 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import styled from "styled-components/native"
 
-export default class App extends React.Component {
+const Body = styled.View`
+  flex: 1;
+  background: #00bcd4;
+  flex-flow: column nowrapp;
+  align-items: stretch;
+  justify-content: center;
+`
+const Wrapper = styled.View`
+  flex: 1;
+  background: white;
+  margin: 30px 15px 15px 15px;
+  padding: 15px;
+  border-radius: 30px;
+`
+
+const HomeScreen = () => {
+  return(
+    <Body>
+      <Wrapper>
+        <Text>Hello World!</Text>
+        <Text>Home</Text>
+      </Wrapper>
+    </Body>
+  )
+}
+const DetailScreen = () => {
+  return(
+    <Body>
+      <Wrapper>
+        <Text>Hello World!</Text>
+        <Text>Deail</Text>
+      </Wrapper>
+    </Body>
+  )
+}
+
+
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <HomeScreen />
     );
   }
 }
