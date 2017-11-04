@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, ScrollView } from 'react-native';
 import styled from "styled-components/native"
-import { DrawerNavigator } from "react-navigation"
+import { StackNavigator, TabNavigator } from "react-navigation"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Body = styled.View`
@@ -26,34 +26,45 @@ const HomeScreen = ({ navigation }) => {
         <Text>Hello World!</Text>
         <Text>Home</Text>
         <Button
-          onPress={() => navigation.navigate('DrawerToggle')}
-          title="Open Drawer"
+          onPress={() => navigation.navigate("Form")}
+          title="Go To Form"
         />
       </Wrapper>
     </Body>
   )
 }
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   return(
     <Body>
       <Wrapper>
         <Text>Hello World!</Text>
-        <Text>Deail</Text>
-        <Button
-          onPress={() => navigation.navigate('DrawerToggle')}
-          title="Open Drawer"
-        />
+        <Text>Profile</Text>
+      </Wrapper>
+    </Body>
+  )
+}
+const FormScreen = () => {
+  return(
+    <Body>
+      <Wrapper>
+        <ScrollView>
+          <Text>Hello World!</Text>
+          <Text>Form</Text>
+          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+          1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+          1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map( e => <Text>{e}</Text>)}
+        </ScrollView>
       </Wrapper>
     </Body>
   )
 }
 
-const RootDrawer = DrawerNavigator({
+const MainScreenNavigator = TabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      drawerBarLabel: 'Home',
-      drawerBarIcon: ({ tintColor, focused }) => (
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-home' : 'ios-home-outline'}
           size={26}
@@ -65,8 +76,8 @@ const RootDrawer = DrawerNavigator({
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      drawerBarLabel: 'Profile',
-      drawerBarIcon: ({ tintColor, focused }) => (
+      tabBarLabel: 'Profile',
+      tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-person' : 'ios-person-outline'}
           size={26}
@@ -77,10 +88,20 @@ const RootDrawer = DrawerNavigator({
   },
 })
 
-export default class App extends Component {
-  render() {
-    return (
-      <RootDrawer />
-    );
+const App = StackNavigator({
+  Home: {
+    screen: MainScreenNavigator,
+    navigationOptions: {
+      title: "App",
+    }
+  },
+  Form: {
+    screen: FormScreen,
+    navigationOptions: {
+      title: "Form",
+      headerRight: <Button title="Info" />,
+    }
   }
-}
+})
+
+export default App
