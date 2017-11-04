@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import styled from "styled-components/native"
-import { TabNavigator } from "react-navigation"
+import { DrawerNavigator } from "react-navigation"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Body = styled.View`
@@ -25,6 +25,10 @@ const HomeScreen = ({ navigation }) => {
       <Wrapper>
         <Text>Hello World!</Text>
         <Text>Home</Text>
+        <Button
+          onPress={() => navigation.navigate('DrawerToggle')}
+          title="Open Drawer"
+        />
       </Wrapper>
     </Body>
   )
@@ -35,17 +39,21 @@ const ProfileScreen = ({ navigation }) => {
       <Wrapper>
         <Text>Hello World!</Text>
         <Text>Deail</Text>
+        <Button
+          onPress={() => navigation.navigate('DrawerToggle')}
+          title="Open Drawer"
+        />
       </Wrapper>
     </Body>
   )
 }
 
-const RootTabNavigator = TabNavigator({
+const RootDrawer = DrawerNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor, focused }) => (
+      drawerBarLabel: 'Home',
+      drawerBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-home' : 'ios-home-outline'}
           size={26}
@@ -57,8 +65,8 @@ const RootTabNavigator = TabNavigator({
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor, focused }) => (
+      drawerBarLabel: 'Profile',
+      drawerBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-person' : 'ios-person-outline'}
           size={26}
@@ -72,7 +80,7 @@ const RootTabNavigator = TabNavigator({
 export default class App extends Component {
   render() {
     return (
-      <RootTabNavigator />
+      <RootDrawer />
     );
   }
 }
