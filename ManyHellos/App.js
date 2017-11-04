@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import styled from "styled-components/native"
-import { StackNavigator } from "react-navigation"
+import { TabNavigator } from "react-navigation"
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Body = styled.View`
   flex: 1;
@@ -24,40 +25,46 @@ const HomeScreen = ({ navigation }) => {
       <Wrapper>
         <Text>Hello World!</Text>
         <Text>Home</Text>
-        <Button
-          onPress={() => navigation.navigate('Detail')}
-          title="Go to Detail"
-        />
       </Wrapper>
     </Body>
   )
 }
-const DetailScreen = ({ navigation }) => {
+const ProfileScreen = ({ navigation }) => {
   return(
     <Body>
       <Wrapper>
         <Text>Hello World!</Text>
         <Text>Deail</Text>
-        <Button
-          onPress={() => navigation.navigate('Home')}
-          title="Go Home"
-        />
       </Wrapper>
     </Body>
   )
 }
 
-const RootStackNavigator = StackNavigator({
+const RootTabNavigator = TabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
-      headerTitle: 'Home',
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? 'ios-home' : 'ios-home-outline'}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      ),
     },
   },
-  Detail: {
-    screen: DetailScreen,
+  Profile: {
+    screen: ProfileScreen,
     navigationOptions: {
-      headerTitle: 'Detail',
+      tabBarLabel: 'Profile',
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Ionicons
+          name={focused ? 'ios-person' : 'ios-person-outline'}
+          size={26}
+          style={{ color: tintColor }}
+        />
+      ),
     },
   },
 })
@@ -65,7 +72,7 @@ const RootStackNavigator = StackNavigator({
 export default class App extends Component {
   render() {
     return (
-      <RootStackNavigator />
+      <RootTabNavigator />
     );
   }
 }
