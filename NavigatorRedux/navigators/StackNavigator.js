@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from "react-native"
-import { StackNavigator } from "react-navigation"
+import { StackNavigator, addNavigationHelpers } from "react-navigation"
 import MainNavigator from "./MainNavigator"
 import Form from "./screens/Form"
 

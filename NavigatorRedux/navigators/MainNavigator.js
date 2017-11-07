@@ -1,5 +1,5 @@
 import React from "react"
-import { TabNavigator } from "react-navigation"
+import { TabNavigator, addNavigationHelpers } from "react-navigation"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from "./screens/Home"
 import Profile from "./screens/Profile"
